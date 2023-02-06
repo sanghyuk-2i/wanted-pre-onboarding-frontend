@@ -1,47 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useSignData from "../hooks/useSignData";
 
 const SignIn = () => {
-  const [signInData, setSignInData] = useState({ id: "", password: "" });
-
-  const handleInput = (e) => {
-    e.preventDefault();
-    const { value, dataset } = e.target;
-    const { testid } = dataset;
-
-    switch (testid) {
-      case "email-input":
-        setSignInData((prevState) => ({ ...prevState, id: value }));
-        break;
-      case "password-input":
-        setSignInData((prevState) => ({ ...prevState, password: value }));
-        break;
-      default:
-        break;
-    }
-  };
+  const naviagte = useNavigate();
+  const [{ email, password }, setSignInData] = useSignData();
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
       <input
         type="text"
         data-testid="email-input"
-        onChange={handleInput}
-        value={signInData.id}
+        onChange={setSignInData}
+        value={email}
       />
       <input
         type="password"
         name=""
         data-testid="password-input"
-        value={signInData.password}
-        onChange={handleInput}
+        value={password}
+        onChange={setSignInData}
       />
       <button
         data-testid="signin-input"
-        onClick={() => console.log(signInData)}
+        onClick={() => console.log({ email, password })}
       >
         로그인
       </button>
-      <button data-testid="signup-input">회원가입</button>
+      <button data-testid="signup-input" onClick={() => naviagte("/signup")}>
+        회원가입
+      </button>
     </div>
   );
 };

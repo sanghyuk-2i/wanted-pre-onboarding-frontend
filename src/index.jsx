@@ -7,8 +7,4 @@ import routerList from "./routes/routerList";
 const router = createBrowserRouter(routerList);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+root.render(<RouterProvider router={router} />);
