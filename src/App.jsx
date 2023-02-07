@@ -1,5 +1,10 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "./components/auth/AuthProvider";
+
 const App = () => {
-  return <div className="App"></div>;
+  const { user } = useAuth();
+
+  return <Navigate to={user ? "/todo" : "/signin"} />;
 };
 
 export default App;
