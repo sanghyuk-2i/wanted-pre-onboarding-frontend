@@ -2,7 +2,7 @@ import axios from "axios";
 import { getStorageData } from "../utils/storageData";
 
 const selectionApi = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: process.env.REACT_APP_ENDPOINT,
   timeout: 3000,
 });
 
