@@ -15,6 +15,7 @@ const AuthProvider = ({ userData, children, navigate }) => {
   const signIn = (accessToken) => {
     saveStorageData("access-token", accessToken);
     setUser(accessToken);
+    setTimeout(() => navigate("/todo", { replace: true }), 500);
   };
 
   const signOut = () => {
@@ -24,12 +25,6 @@ const AuthProvider = ({ userData, children, navigate }) => {
   };
 
   const value = useMemo(() => ({ user, signIn, signOut }), [user]);
-
-  useEffect(() => {
-    if (user) {
-      navigate("/todo", { replace: true });
-    }
-  }, [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

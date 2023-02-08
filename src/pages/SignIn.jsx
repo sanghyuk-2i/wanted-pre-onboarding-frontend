@@ -17,7 +17,7 @@ const SignIn = () => {
       });
       signIn(data.access_token);
     } catch (e) {
-      console.log(e.toJSON());
+      alert("아이디 또는 비밀번호가 틀렸습니다.");
     }
   };
 

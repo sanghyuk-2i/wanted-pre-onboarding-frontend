@@ -6,6 +6,8 @@ import SignUp from "../pages/SignUp";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import ToDo from "../pages/ToDo";
 import { getStorageData } from "../utils/storageData";
+import action from "./toDoRouterAction";
+import { getToDoData } from "../api/fetchToDo";
 
 const routerElements = createRoutesFromElements(
   <Route
@@ -16,7 +18,12 @@ const routerElements = createRoutesFromElements(
     <Route path="/signin" element={<SignIn />} />
     <Route path="/signup" element={<SignUp />} />
     <Route element={<ProtectedRoute />}>
-      <Route path="/todo" element={<ToDo />} />
+      <Route
+        path="/todo"
+        element={<ToDo />}
+        action={action}
+        loader={async () => ({ toDoData: await getToDoData() })}
+      />
     </Route>
   </Route>
 );
