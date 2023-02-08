@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useSignData = () => {
-  const [signData, setSignData] = useState({ email: "", password: "" });
+  const initialState = { email: "", password: "" };
+  const [signData, setSignData] = useState(initialState);
 
   const handleInput = (e) => {
-    e.preventDefault();
     const { value, dataset } = e.target;
     const { testid } = dataset;
 
@@ -20,7 +20,11 @@ const useSignData = () => {
     }
   };
 
-  return [signData, handleInput];
+  const resetInputValue = () => {
+    setSignData(initialState);
+  };
+
+  return [signData, handleInput, resetInputValue];
 };
 
 export default useSignData;

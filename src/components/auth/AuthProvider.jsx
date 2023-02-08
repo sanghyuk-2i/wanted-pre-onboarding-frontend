@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
 import { removeStorageData, saveStorageData } from "../../utils/storageData";
 
 const AuthContext = createContext();

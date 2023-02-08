@@ -1,4 +1,20 @@
 import React from "react";
+import { AiOutlineDelete, AiOutlineForm } from "react-icons/ai";
+import styled from "styled-components";
+import { Button } from "../../styles/globaStyles";
+
+const ToDoDefaultButton = styled(Button)`
+  width: 28px;
+  height: 28px;
+  margin: 1px;
+  padding: 0;
+  border-radius: 28px;
+  background-color: ${({ backgroundColor }) => backgroundColor ?? "black"};
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+  }
+`;
 
 const ToDoDefaultButtons = ({ submit, id, handleRetouchMode }) => {
   const onDeleteClick = () => {
@@ -6,16 +22,21 @@ const ToDoDefaultButtons = ({ submit, id, handleRetouchMode }) => {
   };
   return (
     <>
-      <button data-testid="modify-button" onClick={handleRetouchMode}>
-        수정
-      </button>
-      <button
+      <ToDoDefaultButton
+        data-testid="modify-button"
+        onClick={handleRetouchMode}
+        backgroundColor="#90be6d"
+      >
+        <AiOutlineForm size={14} color="white" />
+      </ToDoDefaultButton>
+      <ToDoDefaultButton
         data-testid="delete-button"
         name="delete-button"
         onClick={onDeleteClick}
+        backgroundColor="#ff686b"
       >
-        삭제
-      </button>
+        <AiOutlineDelete size={14} color="white" />
+      </ToDoDefaultButton>
     </>
   );
 };

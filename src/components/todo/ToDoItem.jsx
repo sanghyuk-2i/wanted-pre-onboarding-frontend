@@ -1,8 +1,28 @@
 import React, { useState } from "react";
 import { useSubmit } from "react-router-dom";
+import styled from "styled-components";
 import useRetouchMode from "../../hooks/useRetouchMode";
+import { CheckBox, Input, Label } from "../../styles/globaStyles";
 import ToDoDefaultButtons from "./ToDoDefaultButtons";
 import ToDoUpdateButtons from "./ToDoUpdateButtons";
+
+const ToDoItemStyles = styled.li`
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 8px 0;
+  gap: 4px;
+  & > Label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    & > span {
+      flex: 1;
+      font-size: 14px;
+    }
+  }
+`;
 
 const ToDoItem = ({ id, todo, isCompleted }) => {
   const submit = useSubmit();
@@ -20,16 +40,18 @@ const ToDoItem = ({ id, todo, isCompleted }) => {
   };
 
   return (
-    <li>
-      <label>
-        <input
+    <ToDoItemStyles>
+      <Label>
+        <CheckBox
+          size={20}
           type="checkbox"
           name="isCompleted"
           checked={modifyChecked}
           onChange={handleModifyChange}
         />
+
         {retouchMode ? (
-          <input
+          <Input
             type="text"
             name="modify-todo"
             data-testid="modify-input"
@@ -39,7 +61,7 @@ const ToDoItem = ({ id, todo, isCompleted }) => {
         ) : (
           <span>{todo}</span>
         )}
-      </label>
+      </Label>
       {retouchMode ? (
         <ToDoUpdateButtons
           submit={submit}
@@ -55,7 +77,7 @@ const ToDoItem = ({ id, todo, isCompleted }) => {
           handleRetouchMode={retouchModeOn}
         />
       )}
-    </li>
+    </ToDoItemStyles>
   );
 };
 
